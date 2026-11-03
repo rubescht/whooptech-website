@@ -268,6 +268,24 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .proof2{list-style:none;margin:26px 0 0;padding:18px 0 0;border-top:1px solid rgba(243,235,221,.15);display:flex;gap:22px;flex-wrap:wrap}
 .proof2 li{display:flex;align-items:center;gap:8px;font-size:14px;color:#e6d9c4;font-weight:600}
 @media (max-width:640px){.offer-list{display:grid;grid-template-columns:repeat(4,1fr);width:100%}.offer-list li{width:auto}.offer-plus{display:none}.offer-core{width:100%;box-sizing:border-box}.proof2{flex-direction:column;gap:10px}}
+
+/* where the line is drawn */
+.line-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
+.line-grid>*{min-width:0}
+.line-art .ig{max-width:620px;margin:0 auto}
+.rules{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.rule{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+.rule b{display:block;font-family:var(--display);font-stretch:112%;font-weight:800;font-size:19px;margin-bottom:4px}
+.rule p{font-size:14.5px;color:var(--muted);line-height:1.45}
+.rule-ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center}
+.rule-ic svg{width:26px;height:26px;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.rule.dark .rule-ic{background:#0b0908}.rule.dark .rule-ic svg{stroke:#dca43a}
+.rule.ochre .rule-ic{background:var(--ochre)}.rule.ochre .rule-ic svg{stroke:#f6d58a}
+.rule.sun .rule-ic{background:var(--sun)}.rule.sun .rule-ic svg{stroke:#2a221d}
+.rule.ochre{border-color:var(--ochre)}
+.line-fig.on .rule{animation:igpop .6s cubic-bezier(.2,.7,.2,1) var(--d) both}
+@media (max-width:860px){.line-grid{grid-template-columns:1fr;gap:24px}}
+@media (max-width:640px){.rule{grid-template-columns:44px 1fr;padding:14px;gap:12px}.rule-ic{width:44px;height:44px}}
 /* film */
 .film{padding-block:0 80px;border-top:0;background:var(--night);color:#f1e8da}
 .film .eyebrow{color:#dca43a}
@@ -516,16 +534,44 @@ footer p{max-width:none}
   <p class="lede">Six steps, led by the community. Nothing starts without the Elders Council.</p>
   <ol class="steps6"><li><span class="sn">1</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect x="5" y="11" width="14" height="9" rx="2"/></svg><b>Consent</b><span>Community decides if, where and how</span></li><li><span class="sn">2</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg><b>Data sovereignty</b><span>Community owns its data</span></li><li><span class="sn">3</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg><b>Cultural protection</b><span>Sacred knowledge never goes in</span></li><li><span class="sn">4</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6a4 4 0 0 0 5 5l-8 8-3-3z"/><path d="M8 16l-4 4"/></svg><b>Safe tools</b><span>Locked down, Australian-hosted</span></li><li><span class="sn">5</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"/><path d="M9 12l2 2 4-4"/></svg><b>Policy &amp; oversight</b><span>People check; AI never decides</span></li><li><span class="sn">6</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg><b>Review</b><span>Regular check-ins, fix any harm</span></li></ol>
   <h3 class="sub3">Where the line is drawn</h3>
-  <figure class="fig"><div class="only-wide"><svg class="ig" viewBox="0 0 960 420" role="img" aria-label="The gate: sacred and restricted knowledge stays in community; community data passes to approved AI tools only through the Elders Council"><rect x="20" y="30" width="460" height="360" rx="12" fill="none" stroke="var(--ochre)" stroke-width="3" stroke-dasharray="10 8"/><text x="40" y="62" font-family="ui-monospace,Menlo,monospace" font-size="14" letter-spacing="2" fill="var(--ochre)">COMMUNITY</text><g class="node" style="--d:.2s"><rect x="44" y="84" width="412" height="120" rx="8" fill="var(--ink)"/><text x="250" y="118" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="18" fill="#f3ebdd">Sacred, restricted or gendered knowledge</text><text x="250" y="146" text-anchor="middle" font-size="15" fill="#c9bba6"><tspan x="250">Never goes into any AI tool.</tspan><tspan x="250" dy="19">Stays with the people who hold it.</tspan></text><text x="250" y="190" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="13" letter-spacing="1" fill="var(--sun)">STAYS INSIDE</text></g><g class="node" style="--d:.5s"><rect x="44" y="230" width="412" height="120" rx="8" fill="var(--surface)" stroke="var(--line)"/><text x="250" y="264" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="20" fill="var(--fg)">Community data and stories</text><text x="250" y="292" text-anchor="middle" font-size="15" fill="var(--muted)"><tspan x="250">Owned and controlled by community.</tspan><tspan x="250" dy="19">Shared only with consent.</tspan></text><text x="250" y="336" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="13" letter-spacing="1" fill="var(--ochre)">MAY PASS, WITH APPROVAL</text></g><g class="node" style="--d:.9s"><rect x="540" y="220" width="140" height="140" rx="10" fill="var(--ochre)"/><rect x="572" y="256" width="76" height="104" rx="38" fill="var(--ink)" opacity=".45"/><text x="610" y="200" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="22" fill="var(--fg)">Elders Council</text><text x="610" y="388" text-anchor="middle" font-size="14" fill="var(--muted)">approves, or stops, every project</text></g><path class="track" d="M456 290 L540 290" stroke="var(--ochre)" stroke-width="5" stroke-dasharray="8 8"/><path class="track" d="M680 290 L740 290" stroke="var(--ochre)" stroke-width="5" stroke-dasharray="8 8"/><path d="M456 144 L500 144" stroke="var(--ochre)" stroke-width="5" opacity=".5"/><path d="M506 130 L534 158 M534 130 L506 158" stroke="var(--ochre)" stroke-width="6" stroke-linecap="round"/><g class="node" style="--d:1.3s"><rect x="740" y="236" width="200" height="110" rx="8" fill="var(--surface)" stroke="var(--line)"/><text x="840" y="274" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="20" fill="var(--fg)">Approved AI tools</text><text x="840" y="300" text-anchor="middle" font-size="14" fill="var(--muted)">Privacy locked down.</text><text x="840" y="320" text-anchor="middle" font-size="14" fill="var(--muted)">Australian hosting.</text></g></svg></div><div class="only-narrow"><div class="gate-v">
-    <div class="gv-zone"><small>Community</small>
-      <div class="gv-box dark"><b>Sacred, restricted or gendered knowledge</b><span>Never goes into any AI tool</span><em>Stays inside</em></div>
-      <div class="gv-box"><b>Community data and stories</b><span>Owned by community, shared with consent</span><em class="o">May pass, with approval</em></div>
-    </div>
-    <div class="gv-arrow"></div>
-    <div class="gv-gate"><b>Elders Council</b><span>approves, or stops, every project</span></div>
-    <div class="gv-arrow"></div>
-    <div class="gv-box"><b>Approved AI tools</b><span>Locked down, Australian-hosted</span></div>
-  </div></div></figure>
+  <figure class="fig line-fig"><div class="line-grid"><div class="line-art"><svg class="ig circles" viewBox="0 0 700 600" role="img" aria-label="Circles of Country: sacred knowledge at the centre never leaves; community data in the ring can leave only through the Elders Council gate to approved AI tools">
+  <circle class="node" style="--d:.1s" cx="310" cy="320" r="254" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="2 8"/>
+  <g class="node" style="--d:.2s">
+    <circle cx="310" cy="320" r="220" fill="var(--surface)"/>
+    <circle cx="310" cy="320" r="220" fill="none" stroke="var(--ochre)" stroke-width="4" stroke-dasharray="14 10"/>
+    <text x="310" y="134" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="14" letter-spacing="3" fill="var(--ochre)">COMMUNITY</text>
+    <text x="310" y="476" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="20" fill="var(--fg)">Community data &amp; stories</text>
+    <text x="310" y="500" text-anchor="middle" font-size="15" fill="var(--muted)">owned by community</text>
+  </g>
+  <g class="node" style="--d:.45s">
+    <circle cx="310" cy="320" r="104" fill="#0b0908" stroke="var(--sun)" stroke-width="2"/>
+    <g transform="translate(297 254) scale(1.1)" fill="none" stroke="#dca43a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect x="5" y="11" width="14" height="9" rx="2"/></g>
+    <text x="310" y="320" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="18" fill="#f3ebdd">Sacred, restricted</text>
+    <text x="310" y="342" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="18" fill="#f3ebdd">or gendered</text>
+    <text x="310" y="364" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="18" fill="#f3ebdd">knowledge</text>
+  </g>
+  <path class="track" d="M200 320 L108 320" stroke="var(--muted)" stroke-width="3" stroke-dasharray="6 7"/>
+  <g class="node" style="--d:.9s">
+    <circle cx="90" cy="320" r="20" fill="var(--bg)" stroke="var(--ochre)" stroke-width="3"/>
+    <path d="M82 312 L98 328 M98 312 L82 328" stroke="var(--ochre)" stroke-width="4" stroke-linecap="round"/>
+    <text x="150" y="304" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="12" letter-spacing="1.5" fill="var(--ochre)">NEVER LEAVES</text>
+  </g>
+  <g class="node" style="--d:1s">
+    <circle cx="419" cy="225" r="6" fill="var(--ochre)"/><circle cx="435" cy="215" r="6" fill="var(--ochre)" opacity=".75"/><circle cx="425" cy="201" r="6" fill="var(--ochre)" opacity=".5"/>
+  </g>
+  <path class="track" d="M429 213 L473 173 L580 122" fill="none" stroke="var(--ochre)" stroke-width="4" stroke-dasharray="10 8"/>
+  <g class="node" style="--d:1.15s">
+    <g transform="translate(473 173) rotate(48)"><rect x="-34" y="-17" width="68" height="34" rx="8" fill="var(--ochre)"/>
+      <path d="M-14 9 V-3 a14 14 0 0 1 28 0 V9" fill="none" stroke="#f6d58a" stroke-width="3"/></g>
+    <text x="517" y="211" font-family="Archivo,sans-serif" font-weight="800" font-size="20" fill="var(--fg)">Elders Council</text>
+    <text x="517" y="231" font-size="14" fill="var(--muted)">the only way out</text>
+  </g>
+  <g class="node" style="--d:1.45s">
+    <rect x="540" y="40" width="150" height="82" rx="10" fill="var(--surface)" stroke="var(--sun)" stroke-width="2.5"/>
+    <text x="615" y="74" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="19" fill="var(--fg)">Approved</text>
+    <text x="615" y="98" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="19" fill="var(--fg)">AI tools</text>
+  </g>
+</svg></div><ol class="rules"><li class="rule dark" style="--d:0.50s"><span class="rule-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect x="5" y="11" width="14" height="9" rx="2"/></svg></span><div><b>Never goes in</b><p>Sacred, restricted or gendered knowledge. Images of people who have passed.</p></div></li><li class="rule ochre" style="--d:0.75s"><span class="rule-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10a8 8 0 0 1 16 0v10"/><path d="M8 20v-8a4 4 0 0 1 8 0v8M3 20h18"/></svg></span><div><b>Only with approval</b><p>Community data and stories leave only through the Elders Council.</p></div></li><li class="rule sun" style="--d:1.00s"><span class="rule-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Locked-down tools</b><p>Approved tools only. Privacy on. Australian hosting.</p></div></li></ol></div></figure>
   <h3 class="sub3">The training pathway</h3>
   <figure class="fig stairs-fig"><div class="stairs"><div class="stair" style="--h:25%;--d:0.2s"><div class="stair-top"><small>Level 1</small><b>Digital foundations</b><span>Anyone</span></div><div class="stair-bar"></div></div><div class="stair" style="--h:50%;--d:0.4s"><div class="stair-top"><small>Level 2</small><b>AI everyday</b><span>Community &amp; youth</span></div><div class="stair-bar"></div></div><div class="stair" style="--h:75%;--d:0.6s"><div class="stair-top"><small>Level 3</small><b>AI at work</b><span>Organisation staff</span></div><div class="stair-bar"></div></div><div class="stair" style="--h:100%;--d:0.8s"><div class="stair-top"><small>Level 4</small><b>AI champions</b><span>Local leaders</span></div><div class="stair-bar"></div></div></div>
   <figcaption>On Country, in plain English or language. Monthly refreshers for everyone. Champions can become paid Whoop Whoop trainers.</figcaption></figure>
