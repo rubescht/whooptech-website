@@ -106,9 +106,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero-mark{position:relative;width:min(100%,380px);height:auto;display:block}
 .voiceline{position:relative;font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#c9bba6;max-width:36ch;line-height:1.7;text-align:center;margin-top:18px}
 @media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-art{order:-1;min-height:0}.hero-mark{width:min(60%,240px)}.hero h1{font-size:clamp(36px,10vw,52px)}.proof{grid-template-columns:1fr;gap:10px}.hero{padding-block:40px 40px}}
-.hero-mark .ground{transform-origin:85px 128px;animation:ground .7s ease-out both}
-.hero-mark .ridge{stroke-dasharray:420;stroke-dashoffset:420;animation:draw 1.4s cubic-bezier(.4,0,.2,1) .4s both}
-.hero-mark .sun{animation:rise 1.8s cubic-bezier(.3,.6,.2,1) 1.2s both}
 @keyframes ground{from{transform:scaleX(.1);opacity:0}to{transform:scaleX(1);opacity:1}}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes rise{from{transform:translateY(110px)}to{transform:translateY(0)}}
@@ -440,7 +437,10 @@ footer p{max-width:none}
 @keyframes navrise{0%{transform:translateY(112px)}100%{transform:translateY(0)}}
 @keyframes navglowin{to{opacity:1}}
 @keyframes navbreathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.82)}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero-mark .ridge{stroke-dashoffset:0}.nav-mark .nsun-glow{opacity:1}}
+.hero-mark .hm-glow{opacity:0;transform-box:fill-box;transform-origin:center}
+.hero-mark.done .hm-glow{animation:navglowin 1.2s ease-out forwards,navbreathe 5s ease-in-out 1.2s infinite}
+.hero-mark{cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero-mark .hm-glow{opacity:1}.nav-mark .nsun-glow{opacity:1}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -509,16 +509,33 @@ footer p{max-width:none}
     </div>
     <div class="hero-art" aria-hidden="true">
       <div class="dawn"></div>
-      <svg class="hero-mark" viewBox="0 0 170 140">
-        <defs><clipPath id="sky"><rect x="0" y="0" width="170" height="124"/></clipPath></defs>
+      <svg class="hero-mark" id="heromark" viewBox="0 0 170 140" overflow="visible">
+        <defs>
+          <mask id="hm-gmask" maskUnits="userSpaceOnUse" x="-10" y="100" width="190" height="50"><path class="hm-gswipe" d="M2 128 C50 125 120 125 168 128" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round"/></mask>
+          <mask id="hm-smask" maskUnits="userSpaceOnUse" x="60" y="0" width="50" height="52"><circle class="hm-sdot" cx="85" cy="26" r="5" fill="#fff" opacity="0"/><circle class="hm-sswirl" cx="85" cy="26" r="8" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" transform="rotate(-100 85 26)"/></mask>
+          <radialGradient id="hm-glow"><stop offset="0" stop-color="#f2c661" stop-opacity=".6"/><stop offset=".5" stop-color="#dca43a" stop-opacity=".22"/><stop offset="1" stop-color="#dca43a" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle class="hm-glow" cx="85" cy="26" r="40" fill="url(#hm-glow)"/>
         <g filter="url(#rough)">
-          <g clip-path="url(#sky)"><circle class="sun" cx="85" cy="26" r="12" fill="#dca43a"/></g>
+          <path class="hm-ground" mask="url(#hm-gmask)" d="M4 127 C40 118 130 118 166 124 C164 134 120 137 85 137 C50 137 12 137 4 127 Z" fill="#f3ebdd"/>
           <g filter="url(#dry)">
-            <path class="ridge" d="M12 20 L42 108 L71 52 L85 82 L99 52 L128 108 L158 20" fill="none" stroke="#b8472a" stroke-width="18" stroke-linejoin="round" stroke-linecap="round"/>
-            <path class="ridge" d="M14 22 L43 104 L70 50 L85 78 L100 50 L127 104 L156 22" fill="none" stroke="#b8472a" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
+            <path class="hm-stroke" d="M12 20 L42 108" fill="none" stroke="#b8472a" stroke-width="18" stroke-linejoin="round" stroke-linecap="round"/>
+            <path class="hm-stroke" d="M42 108 L71 52 L85 82" fill="none" stroke="#b8472a" stroke-width="18" stroke-linejoin="round" stroke-linecap="round"/>
+            <path class="hm-stroke" d="M85 82 L99 52 L128 108" fill="none" stroke="#b8472a" stroke-width="18" stroke-linejoin="round" stroke-linecap="round"/>
+            <path class="hm-stroke" d="M128 108 L158 20" fill="none" stroke="#b8472a" stroke-width="18" stroke-linejoin="round" stroke-linecap="round"/>
+            <path class="hm-stroke hm-coat" d="M14 22 L43 104 L70 50 L85 78 L100 50 L127 104 L156 22" fill="none" stroke="#b8472a" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
           </g>
-          <path class="ground" d="M4 127 C40 118 130 118 166 124 C164 134 120 137 85 137 C50 137 12 137 4 127 Z" fill="#f3ebdd"/>
+          <circle class="hm-sun" mask="url(#hm-smask)" cx="85" cy="26" r="12" fill="#dca43a"/>
         </g>
+        <g class="hm-brush" opacity="0"><g class="hm-brush-r">
+          <ellipse cx="1.5" cy="2" rx="3.6" ry="1.6" fill="#000" opacity=".25"/>
+          <path class="hm-tip" d="M0 0 C-3.2 -3 -3.4 -7 -3 -11 L3 -11 C3.4 -7 3.2 -3 0 0 Z" fill="#b8472a"/>
+          <path d="M-3 -11 C-3 -9 3 -9 3 -11" fill="none" stroke="#000" stroke-opacity=".25" stroke-width=".6"/>
+          <rect x="-3.3" y="-17.5" width="6.6" height="6.8" rx="1" fill="#c9bba6"/>
+          <rect x="-3.3" y="-15.2" width="6.6" height=".9" fill="#8f8473"/>
+          <path d="M-2.6 -17.5 L-2 -46 Q0 -48.5 2 -46 L2.6 -17.5 Z" fill="#8a5a33"/>
+          <path d="M-1.6 -18 L-1.2 -44" stroke="#b07a4a" stroke-width=".8" stroke-linecap="round"/>
+        </g></g>
       </svg>
     </div>
   </div>
@@ -784,6 +801,51 @@ footer p{max-width:none}
   b.addEventListener('click',function(){v.muted=!v.muted;b.textContent=v.muted?'Play with sound':'Mute';if(v.paused)v.play();});
 })();
 document.getElementById('enquiry').addEventListener('submit',function(e){e.preventDefault();document.getElementById('toast').classList.add('on');this.reset();});
+</script>
+<script>
+// hero logo: painted from scratch, stroke by stroke
+(function(){
+  var svg=document.getElementById('heromark'); if(!svg)return;
+  var q=function(c){return svg.querySelector(c)}, qa=function(c){return [].slice.call(svg.querySelectorAll(c))};
+  var gswipe=q('.hm-gswipe'), sswirl=q('.hm-sswirl'), strokes=qa('.hm-stroke'), brush=q('.hm-brush'), rot=q('.hm-brush-r'), tip=q('.hm-tip'), sdot=q('.hm-sdot');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var parts=[{el:gswipe,c:'#f3ebdd',t0:150,t1:1050}];
+  var times=[[1250,1700],[1820,2420],[2520,3120],[3240,3690],[3850,4700]];
+  strokes.forEach(function(el,k){parts.push({el:el,c:'#b8472a',t0:times[k][0],t1:times[k][1]})});
+  parts.push({el:sswirl,c:'#dca43a',t0:4880,t1:5560,circle:true});
+  parts.forEach(function(p){p.L=p.el.getTotalLength();});
+  var END=5600, OUT=6200;
+  function ease(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}
+  function set(p,k){p.el.style.strokeDasharray=p.L+' '+(p.L+1);p.el.style.strokeDashoffset=p.L*(1-k);p.el.style.opacity=k>0?1:0}
+  function pt(p,k){var P=p.el.getPointAtLength(p.L*k);if(p.circle){var a=-100*Math.PI/180,c=Math.cos(a),s=Math.sin(a),x=P.x-85,y=P.y-26;return{x:85+x*c-y*s,y:26+x*s+y*c}}return P}
+  function frame(t){
+    var cur=null,ck=0,prev=null;
+    parts.forEach(function(p){var k=Math.max(0,Math.min(1,(t-p.t0)/(p.t1-p.t0)));k=ease(k);set(p,k);if(t>=p.t0&&t<=p.t1){cur=p;ck=k}if(t>p.t1)prev=p});
+    sdot.setAttribute('opacity',t>parts[parts.length-1].t0+150?1:0);
+    var pos,col,lift=0;
+    if(cur){pos=pt(cur,ck);col=cur.c}
+    else{var nxt=null;for(var i=0;i<parts.length;i++){if(t<parts[i].t0){nxt=parts[i];break}}
+      if(nxt&&prev){var a=pt(prev,1),b=pt(nxt,0),u=ease((t-prev.t1)/(nxt.t0-prev.t1));pos={x:a.x+(b.x-a.x)*u,y:a.y+(b.y-a.y)*u};lift=Math.sin(u*Math.PI);col=u<.5?prev.c:nxt.c}
+      else if(nxt){var b2=pt(nxt,0),u2=ease(Math.min(1,t/nxt.t0));pos={x:b2.x+40*(1-u2),y:b2.y-30*(1-u2)};lift=1-u2;col=nxt.c}
+      else{var e=pt(parts[parts.length-1],1),u3=ease(Math.min(1,(t-END)/(OUT-END)));pos={x:e.x+50*u3,y:e.y-36*u3};lift=u3;col='#dca43a'}}
+    var op=t<150?t/150:(t>END?Math.max(0,1-(t-END)/(OUT-END)):1);
+    var wob=Math.sin(t/110)*4+(cur?Math.sin(t/37)*1.5:0);
+    brush.setAttribute('opacity',op.toFixed(3));
+    brush.setAttribute('transform','translate('+pos.x.toFixed(2)+' '+(pos.y-lift*7).toFixed(2)+')');
+    rot.setAttribute('transform','rotate('+(32+wob-lift*6).toFixed(2)+')');
+    tip.setAttribute('fill',col);
+  }
+  function finish(){parts.forEach(function(p){set(p,1)});sdot.setAttribute('opacity',1);brush.setAttribute('opacity',0);svg.classList.add('done')}
+  var running=false;
+  function play(){if(running)return;running=true;svg.classList.remove('done');var s0=null;
+    function step(ts){if(s0===null)s0=ts;var t=ts-s0;frame(t);if(t<END+200&&!svg.classList.contains('done')&&t>=END)svg.classList.add('done');if(t<OUT)requestAnimationFrame(step);else{brush.setAttribute('opacity',0);running=false}}
+    requestAnimationFrame(step)}
+  if(reduce||!('IntersectionObserver' in window)){finish();return}
+  frame(0);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){io.disconnect();setTimeout(play,250)}})},{threshold:.45});
+  io.observe(svg);
+  svg.addEventListener('click',play);
+})();
 </script>
 
 </body>
