@@ -154,6 +154,31 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
  .tbl td:first-child{font-family:var(--display);font-stretch:112%;font-size:19px;font-weight:700;padding-bottom:8px}
  .tbl td:first-child::before{display:none}
 }
+
+/* twelve-month timeline */
+.tl{margin-top:28px}
+.tl-sky{width:100%;height:auto;display:block;margin-bottom:-6px}
+.tl-bar{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;height:40px}
+.tl-seg{border-radius:3px;display:flex;align-items:center;padding:0 10px;min-width:0;overflow:hidden;transform-origin:left}
+.tl-seg b{font:500 12px var(--mono);letter-spacing:.06em;color:#f3ebdd;white-space:nowrap}
+.tl-seg:last-child b{color:#2a221d}
+.tl-ruler{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;margin-top:6px;font:500 11px var(--mono);color:var(--muted);text-align:center}
+.tl-ruler span{border-top:1px solid var(--line);padding-top:4px}
+.tl-cards{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.tl-card{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.tl-head{display:flex;align-items:center;gap:10px}
+.tl-head i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--c);color:#f3ebdd;display:grid;place-items:center;font:500 13px var(--mono);flex-shrink:0}
+.tl-card:last-child .tl-head i{color:#2a221d}
+.tl-head span{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tl-card h4{margin:2px 0 0;font-family:var(--display);font-stretch:112%;font-weight:700;font-size:18px;line-height:1.15}
+.tl-card p{font-size:14.5px;color:var(--muted);line-height:1.5;flex-grow:1}
+.tl-out{align-self:flex-start;font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg);border:1px solid var(--c);border-radius:999px;padding:5px 10px}
+.tl.on .tl-seg{animation:tlgrow .7s cubic-bezier(.2,.7,.2,1) var(--d) both}
+.tl.on .tl-card{animation:igpop .6s cubic-bezier(.2,.7,.2,1) var(--d) both}
+@keyframes tlgrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-width:1000px){.tl-cards{grid-template-columns:repeat(2,1fr)}.tl-card:last-child{grid-column:1/-1}}
+@media (max-width:640px){.tl-cards{grid-template-columns:1fr}.tl-seg{padding:0 4px;justify-content:center}.tl-seg b{display:none}.tl-seg::after{content:attr(data-short);font:500 11px var(--mono);color:#f3ebdd}.tl-seg:last-child::after{color:#2a221d}.tl-bar{height:32px}}
+@media (prefers-reduced-motion:reduce){.tl.on .tl-seg,.tl.on .tl-card{animation:none}}
 /* film */
 .film{padding-block:0 80px;border-top:0;background:var(--night);color:#f1e8da}
 .film .eyebrow{color:#dca43a}
@@ -450,7 +475,18 @@ footer p{max-width:none}
 
   <h3 style="margin-top:56px">A community's first twelve months</h3>
   <p class="lede" style="margin-top:8px;font-size:17px">From the first yarn to local hands.</p>
-  <figure class="fig"><div class="only-wide"><svg class="ig" viewBox="0 0 1200 220" role="img" aria-label="A community's first twelve months: yarn and design, connect, protect, train, hand over"><path class="track" d="M60 110 L1140 110" stroke="var(--line)" stroke-width="4"/><g class="node" style="--d:0.20s"><circle cx="60" cy="110" r="16" fill="var(--ochre)"/><text x="60" y="70" text-anchor="start" font-family="ui-monospace,Menlo,monospace" font-size="15" letter-spacing="1" fill="var(--ochre)">MONTH 1</text><text x="60" y="156" text-anchor="start" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="var(--fg)"><tspan x="60" dy="0">Yarn and design</tspan><tspan x="60" dy="22">together</tspan></text></g><g class="node" style="--d:0.50s"><circle cx="330" cy="110" r="16" fill="var(--ochre)"/><text x="330" y="70" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="15" letter-spacing="1" fill="var(--ochre)">MONTH 2</text><text x="330" y="156" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="var(--fg)"><tspan x="330" dy="0">Connected, with</tspan><tspan x="330" dy="22">backup</tspan></text></g><g class="node" style="--d:0.80s"><circle cx="600" cy="110" r="16" fill="var(--ochre)"/><text x="600" y="70" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="15" letter-spacing="1" fill="var(--ochre)">MONTHS 3–4</text><text x="600" y="156" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="var(--fg)"><tspan x="600" dy="0">Devices, 24/7</tspan><tspan x="600" dy="22">support, protection</tspan></text></g><g class="node" style="--d:1.10s"><circle cx="870" cy="110" r="16" fill="var(--ochre)"/><text x="870" y="70" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="15" letter-spacing="1" fill="var(--ochre)">MONTHS 5–8</text><text x="870" y="156" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="var(--fg)"><tspan x="870" dy="0">Training levels 1</tspan><tspan x="870" dy="22">and 2 on Country</tspan></text></g><g class="node" style="--d:1.40s"><circle cx="1140" cy="110" r="16" fill="var(--sun)"/><text x="1140" y="70" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="15" letter-spacing="1" fill="var(--ochre)">MONTHS 9–12</text><text x="1140" y="156" text-anchor="end" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="var(--fg)"><tspan x="1140" dy="0">Community AI</tspan><tspan x="1140" dy="22">champions, hand over</tspan></text></g></svg></div><div class="only-narrow"><svg class="ig" viewBox="0 0 400 430" role="img" aria-label="First twelve months timeline"><path class="track" d="M30 30 L30 400" stroke="var(--line)" stroke-width="4"/><g class="node" style="--d:0.20s"><circle cx="30" cy="36" r="13" fill="var(--ochre)"/><text x="62" y="28" font-family="ui-monospace,Menlo,monospace" font-size="13" letter-spacing="1" fill="var(--ochre)">MONTH 1</text><text y="52" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="var(--fg)"><tspan x="62" dy="0">Yarn and design together</tspan></text></g><g class="node" style="--d:0.45s"><circle cx="30" cy="116" r="13" fill="var(--ochre)"/><text x="62" y="108" font-family="ui-monospace,Menlo,monospace" font-size="13" letter-spacing="1" fill="var(--ochre)">MONTH 2</text><text y="132" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="var(--fg)"><tspan x="62" dy="0">Connected, with backup</tspan></text></g><g class="node" style="--d:0.70s"><circle cx="30" cy="196" r="13" fill="var(--ochre)"/><text x="62" y="188" font-family="ui-monospace,Menlo,monospace" font-size="13" letter-spacing="1" fill="var(--ochre)">MONTHS 3–4</text><text y="212" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="var(--fg)"><tspan x="62" dy="0">Devices, 24/7 support,</tspan><tspan x="62" dy="20">protection</tspan></text></g><g class="node" style="--d:0.95s"><circle cx="30" cy="276" r="13" fill="var(--ochre)"/><text x="62" y="268" font-family="ui-monospace,Menlo,monospace" font-size="13" letter-spacing="1" fill="var(--ochre)">MONTHS 5–8</text><text y="292" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="var(--fg)"><tspan x="62" dy="0">Training levels 1 and 2 on</tspan><tspan x="62" dy="20">Country</tspan></text></g><g class="node" style="--d:1.20s"><circle cx="30" cy="356" r="13" fill="var(--sun)"/><text x="62" y="348" font-family="ui-monospace,Menlo,monospace" font-size="13" letter-spacing="1" fill="var(--ochre)">MONTHS 9–12</text><text y="372" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="var(--fg)"><tspan x="62" dy="0">Community AI champions, hand</tspan><tspan x="62" dy="20">over</tspan></text></g></svg></div></figure>
+  <figure class="fig tl" aria-label="A community's first twelve months, in five phases">
+    <svg class="tl-sky" viewBox="0 0 1200 150" aria-hidden="true">
+      <defs><linearGradient id="tlarc" x1="0" x2="1"><stop offset="0" stop-color="#5f5243"/><stop offset=".5" stop-color="#b8472a"/><stop offset="1" stop-color="#dca43a"/></linearGradient>
+      <radialGradient id="tlglow"><stop offset="0" stop-color="#dca43a" stop-opacity=".45"/><stop offset="1" stop-color="#dca43a" stop-opacity="0"/></radialGradient></defs>
+      <path id="tlpath" d="M10 140 C 380 140, 760 110, 1170 30" fill="none" stroke="url(#tlarc)" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+      <circle class="tl-glow" cx="1170" cy="30" r="46" fill="url(#tlglow)"/>
+      <circle class="tl-sun" cx="1170" cy="30" r="16" fill="#dca43a"/>
+    </svg>
+    <div class="tl-bar"><span class="tl-seg" style="grid-column:span 1;background:#5f5243;--d:0.15s" data-short="1"><b>Month 1</b></span><span class="tl-seg" style="grid-column:span 1;background:#8a3319;--d:0.33s" data-short="2"><b>Month 2</b></span><span class="tl-seg" style="grid-column:span 2;background:#b8472a;--d:0.51s" data-short="3–4"><b>Months 3–4</b></span><span class="tl-seg" style="grid-column:span 4;background:#cf6a2e;--d:0.69s" data-short="5–8"><b>Months 5–8</b></span><span class="tl-seg" style="grid-column:span 4;background:#dca43a;--d:0.87s" data-short="9–12"><b>Months 9–12</b></span></div>
+    <div class="tl-ruler" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+    <ol class="tl-cards"><li class="tl-card" style="--c:#5f5243;--d:0.60s"><div class="tl-head"><i>1</i><span>Month 1</span></div><h4>Yarn &amp; design</h4><p>Meet Elders, councils and land councils. Co-design the plan around community priorities.</p><div class="tl-out">Elders sign-off</div></li><li class="tl-card" style="--c:#8a3319;--d:0.75s"><div class="tl-head"><i>2</i><span>Month 2</span></div><h4>Connect</h4><p>Starlink, 5G or fibre installed for the site, with a backup link.</p><div class="tl-out">Community online</div></li><li class="tl-card" style="--c:#b8472a;--d:0.90s"><div class="tl-head"><i>3</i><span>Months 3–4</span></div><h4>Equip &amp; protect</h4><p>Devices and accounts set up, 24/7 help desk, cyber guardrails and a plain-English AI policy.</p><div class="tl-out">Protected &amp; supported</div></li><li class="tl-card" style="--c:#cf6a2e;--d:1.05s"><div class="tl-head"><i>4</i><span>Months 5–8</span></div><h4>Train on Country</h4><p>Training levels 1 to 3, delivered locally. Paid trainee roles for community members.</p><div class="tl-out">Locals trained</div></li><li class="tl-card" style="--c:#dca43a;--d:1.20s"><div class="tl-head"><i>5</i><span>Months 9–12</span></div><h4>Champions &amp; hand over</h4><p>Community AI champions qualified. Local technicians take first-line support. Impact report shared.</p><div class="tl-out">In local hands</div></li></ol>
+  </figure>
 </div></section>
 
 <section id="about"><div class="wrap">
@@ -552,6 +588,14 @@ footer p{max-width:none}
   wave("voicebg",{lines:7});wave('voice2',{lines:5});
 })();
 (function(){var b=document.getElementById('burger'),m=document.getElementById('mobilemenu');b.addEventListener('click',function(){var open=m.hidden;m.hidden=!open;b.setAttribute('aria-expanded',open?'true':'false');b.setAttribute('aria-label',open?'Close menu':'Open menu')});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.hidden=true;b.setAttribute('aria-expanded','false')})})})();
+(function(){var f=document.querySelector('.tl');if(!f)return;var path=document.getElementById('tlpath'),sun=f.querySelector('.tl-sun'),glow=f.querySelector('.tl-glow');
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!path.getTotalLength||!('IntersectionObserver' in window))return;
+  var L=path.getTotalLength(),done=false;
+  new IntersectionObserver(function(es,o){es.forEach(function(e){if(!e.isIntersecting||done)return;done=true;o.disconnect();var t0=null;
+    function step(ts){if(t0===null)t0=ts;var k=Math.min(1,(ts-t0)/2600),ease=1-Math.pow(1-k,3),pt=path.getPointAtLength(L*ease);
+      sun.setAttribute('cx',pt.x);sun.setAttribute('cy',pt.y);glow.setAttribute('cx',pt.x);glow.setAttribute('cy',pt.y);if(k<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step)})},{threshold:.35}).observe(f);
+})();
 (function(){if(!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.3});document.querySelectorAll('.fig,.core-ig').forEach(function(f){io.observe(f)})})();
 (function(){var v=document.getElementById('storyvid'),b=document.getElementById('storyplay'),f=document.getElementById('storyfull');
   b.addEventListener('click',function(){if(v.paused){v.play();b.textContent='Pause'}else{v.pause();b.textContent='Play'}});
