@@ -434,7 +434,13 @@ footer p{max-width:none}
 .nav-lockup span{gap:3px}
 .nav-lockup b{font-size:20px}
 .nav-lockup small{font-size:8px;letter-spacing:.38em;color:#dca43a}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero-mark .ridge{stroke-dashoffset:0}}
+.nav-mark .nsun-rise{animation:navrise 2.6s cubic-bezier(.25,.6,.2,1) .5s both}
+.nav-mark .nsun-glow{transform-box:fill-box;transform-origin:center;opacity:0;animation:navglowin 1.4s ease-out 2.4s forwards,navbreathe 5s ease-in-out 3.8s infinite}
+.nav-mark .nsun{filter:url(#rough)}
+@keyframes navrise{0%{transform:translateY(112px)}100%{transform:translateY(0)}}
+@keyframes navglowin{to{opacity:1}}
+@keyframes navbreathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.82)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero-mark .ridge{stroke-dashoffset:0}.nav-mark .nsun-glow{opacity:1}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -457,7 +463,10 @@ footer p{max-width:none}
 <div class="ack"><div class="wrap"><p>Whoop Whoop Technology acknowledges the Traditional Owners of the lands across the Northern Territory on which we live and work, and pays respect to Elders past and present.</p></div></div>
 
 <nav class="nav"><div class="wrap">
-  <a class="brand lockup nav-lockup" href="#story"><svg viewBox="0 0 170 140" aria-hidden="true"><use href="#mark"/></svg><span><b>Whoop Whoop</b><small>TECHNOLOGY</small></span></a>
+  <a class="brand lockup nav-lockup" href="#story"><svg class="nav-mark" viewBox="0 0 170 140" aria-hidden="true" overflow="visible"><defs><clipPath id="navsky"><rect x="-40" y="-40" width="250" height="161"/></clipPath><radialGradient id="navglow"><stop offset="0" stop-color="#f2c661" stop-opacity=".75"/><stop offset=".45" stop-color="#dca43a" stop-opacity=".32"/><stop offset="1" stop-color="#dca43a" stop-opacity="0"/></radialGradient></defs>
+    <g clip-path="url(#navsky)"><g class="nsun-rise"><circle class="nsun-glow" cx="85" cy="26" r="34" fill="url(#navglow)"/><circle class="nsun" cx="85" cy="26" r="12" fill="#dca43a"/></g></g>
+    <g filter="url(#rough)"><g filter="url(#dry)"><path d="M12 20 L42 108 L71 52 L85 82 L99 52 L128 108 L158 20" fill="none" stroke="#b8472a" stroke-width="18" stroke-linejoin="round" stroke-linecap="round"/><path d="M14 22 L43 104 L70 50 L85 78 L100 50 L127 104 L156 22" fill="none" stroke="#b8472a" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/></g>
+    <path d="M4 127 C40 118 130 118 166 124 C164 134 120 137 85 137 C50 137 12 137 4 127 Z" fill="#0b0908"/></g></svg><span><b>Whoop Whoop</b><small>TECHNOLOGY</small></span></a>
   <ul><li><a href="#voice">A stronger voice</a></li><li><a href="#country">On Country</a></li><li><a href="#framework">Our framework</a></li><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
   <a class="btn nav-cta" href="#contact" style="padding:10px 16px;font-size:15px">Talk to us</a>
   <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilemenu"><span></span><span></span><span></span></button>
