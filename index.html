@@ -242,6 +242,32 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .gv-gate{background:var(--ochre);color:#f3ebdd;border-radius:8px;padding:16px;text-align:center;display:flex;flex-direction:column;gap:4px}
 .gv-gate b{font-family:var(--display);font-stretch:112%;font-weight:800;font-size:19px}
 .gv-gate span{font-size:14px;color:#f6ecdd}
+
+/* landing video */
+.landing .story-frame{max-height:calc(100vh - 66px);max-height:calc(100svh - 66px)}
+.landing .story-frame video{object-fit:contain}
+.landing .story-frame::before{height:6%}
+.landing .story-frame::after{height:10%}
+.scroll-cue{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:#e6d9c4;text-decoration:none;font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+.scroll-cue i{width:2px;height:22px;background:linear-gradient(#dca43a,transparent);animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%{transform:translateY(-6px);opacity:0}50%{opacity:1}100%{transform:translateY(6px);opacity:0}}
+@media (max-width:640px){.scroll-cue{display:none}}
+
+@media (max-width:640px){.landing .story-frame{aspect-ratio:9/16;max-height:calc(100svh - 70px)}.landing .story-ctl{bottom:12px}}
+/* graphic hero */
+.offer{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:28px}
+.offer-core{display:flex;align-items:center;gap:12px;background:var(--ochre);color:#f3ebdd;border-radius:10px;padding:12px 16px}
+.offer-core svg{width:30px;height:30px;stroke:#f6d58a;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.offer-core span{display:flex;flex-direction:column;line-height:1.1}
+.offer-core small{font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#f6d58a}
+.offer-core b{font-family:var(--display);font-stretch:112%;font-weight:800;font-size:18px}
+.offer-plus{font:800 26px var(--display);color:#dca43a}
+.offer-list{list-style:none;margin:0;padding:0;display:flex;gap:8px;flex-wrap:wrap}
+.offer-list li{display:flex;flex-direction:column;align-items:center;gap:6px;width:76px;padding:10px 4px;border:1px solid rgba(243,235,221,.18);border-radius:8px;font-size:12px;color:#e6d9c4;text-align:center}
+.offer-list svg,.proof2 svg{width:22px;height:22px;stroke:#dca43a;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.proof2{list-style:none;margin:26px 0 0;padding:18px 0 0;border-top:1px solid rgba(243,235,221,.15);display:flex;gap:22px;flex-wrap:wrap}
+.proof2 li{display:flex;align-items:center;gap:8px;font-size:14px;color:#e6d9c4;font-weight:600}
+@media (max-width:640px){.offer-list{display:grid;grid-template-columns:repeat(4,1fr);width:100%}.offer-list li{width:auto}.offer-plus{display:none}.offer-core{width:100%;box-sizing:border-box}.proof2{flex-direction:column;gap:10px}}
 /* film */
 .film{padding-block:0 80px;border-top:0;background:var(--night);color:#f1e8da}
 .film .eyebrow{color:#dca43a}
@@ -382,7 +408,7 @@ footer p{max-width:none}
 <div class="ack"><div class="wrap"><p>Whoop Whoop Technology acknowledges the Traditional Owners of the lands across the Northern Territory on which we live and work, and pays respect to Elders past and present.</p></div></div>
 
 <nav class="nav"><div class="wrap">
-  <a class="brand lockup nav-lockup" href="#top"><svg viewBox="0 0 170 140" aria-hidden="true"><use href="#mark"/></svg><span><b>Whoop Whoop</b><small>TECHNOLOGY</small></span></a>
+  <a class="brand lockup nav-lockup" href="#story"><svg viewBox="0 0 170 140" aria-hidden="true"><use href="#mark"/></svg><span><b>Whoop Whoop</b><small>TECHNOLOGY</small></span></a>
   <ul><li><a href="#voice">A stronger voice</a></li><li><a href="#country">On Country</a></li><li><a href="#framework">Our framework</a></li><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
   <a class="btn nav-cta" href="#contact" style="padding:10px 16px;font-size:15px">Talk to us</a>
   <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilemenu"><span></span><span></span><span></span></button>
@@ -392,19 +418,36 @@ footer p{max-width:none}
   <a class="btn" href="#contact">Talk to us</a>
 </div></nav>
 
+<section id="story" class="story landing"><div class="story-frame">
+  <video id="storyvid" playsinline muted loop autoplay preload="metadata" poster="film/how-ai-adoption-works.jpg" data-portrait-poster="film/how-ai-adoption-works-portrait.jpg" aria-label="Animated explainer: how AI adoption works in community, our point of difference and how we compare">
+    <source src="film/how-ai-adoption-works.mp4" type="video/mp4" data-portrait="film/how-ai-adoption-works-portrait.mp4">
+  </video>
+  <div class="story-ctl"><button id="storyplay" class="btn" type="button" aria-label="Pause">Pause</button><button id="storyfull" class="btn" type="button">Full screen</button></div>
+  <a class="scroll-cue" href="#top" aria-label="Scroll to learn more"><span>Scroll</span><i></i></a>
+</div></section>
+
 <header class="hero" id="top">
   <canvas id="voicebg" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="eyebrow">AI adoption &amp; training · Indigenous-owned · Northern Territory</div>
+      <div class="eyebrow">Whoop Whoop Technology · call us WhoopTech</div>
       <h1>Country has always had a voice. <em>AI can help it carry further.</em></h1>
-      <p class="lede">AI adoption and training for Aboriginal communities and not-for-profits, on community terms. Plus the internet, devices and security that make it work.</p>
-      <div class="cta"><a class="btn" href="#contact">Start a yarn</a><a class="btn ghost" href="#story">Watch how it works · 1:42</a></div>
-      <ul class="proof">
-        <li><b>Indigenous owned</b><span>and controlled, with an Indigenous-majority board</span></li>
-        <li><b>Elders Council</b><span>approves every community AI and data project</span></li>
-        <li><b>One company</b><span>for AI, connectivity, devices, support and security</span></li>
+      <div class="offer">
+        <div class="offer-core"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M9 10h6M9 13h3M8 20h8"/></svg><span><small>Our core</small><b>AI adoption &amp; training</b></span></div>
+        <div class="offer-plus" aria-hidden="true">+</div>
+        <ul class="offer-list">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h.01M8.5 16.4a5 5 0 0 1 7 0M5 12.9a10 10 0 0 1 14 0M2 9.3a15 15 0 0 1 20 0"/></svg><span>Internet</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>Devices</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>24/7 support</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg><span>Security</span></li>
+        </ul>
+      </div>
+      <ul class="proof2">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M15 14.5c3 0 6 2 6 5.5"/></svg><span>Indigenous owned &amp; run</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 6H3z"/><path d="M5 9v10M19 9v10M9 9v10M15 9v10M3 20h18"/></svg><span>Elders Council approves</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 9l2-1.5V17"/></svg><span>One company, one number</span></li>
       </ul>
+      <div class="cta"><a class="btn" href="#contact">Start a yarn</a><a class="btn ghost" href="#framework">See the framework</a></div>
     </div>
     <div class="hero-art" aria-hidden="true">
       <div class="dawn"></div>
@@ -419,18 +462,11 @@ footer p{max-width:none}
           <path class="ground" d="M4 127 C40 118 130 118 166 124 C164 134 120 137 85 137 C50 137 12 137 4 127 Z" fill="#f3ebdd"/>
         </g>
       </svg>
-      <p class="voiceline">We're Whoop Whoop Technology. You can call us WhoopTech.<br>"Whoop whoop": the far-off bush. A call that carries across open country. That's the job.</p>
     </div>
   </div>
 </header>
 
-<section id="story" class="story"><div class="story-frame">
-  <video id="storyvid" playsinline muted loop autoplay preload="metadata" poster="film/how-ai-adoption-works.jpg" aria-label="Animated explainer: how AI adoption works in community, our point of difference and how we compare">
-    <source src="film/how-ai-adoption-works.mp4" type="video/mp4">
-  </video>
-  <div class="story-label"><span class="eyebrow" style="margin:0;color:#dca43a">Watch</span><span>How AI adoption works in community, why it has to be run by community, and how we compare.</span></div>
-  <div class="story-ctl"><button id="storyplay" class="btn" type="button" aria-label="Pause">Pause</button><button id="storyfull" class="btn" type="button">Full screen</button></div>
-</div></section>
+
 
 <section id="film" class="film" hidden><div class="wrap">
   <div class="eyebrow">Learning on Country</div>
@@ -617,6 +653,8 @@ footer p{max-width:none}
   }
   wave("voicebg",{lines:7});wave('voice2',{lines:5});
 })();
+(function(){var v=document.getElementById('storyvid');if(!v)return;var src=v.querySelector('source');
+  if(matchMedia('(max-width:640px)').matches){v.poster=v.getAttribute('data-portrait-poster');src.src=src.getAttribute('data-portrait');v.load();var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});document.getElementById('story').classList.add('portrait')}})();
 (function(){var b=document.getElementById('burger'),m=document.getElementById('mobilemenu');b.addEventListener('click',function(){var open=m.hidden;m.hidden=!open;b.setAttribute('aria-expanded',open?'true':'false');b.setAttribute('aria-label',open?'Close menu':'Open menu')});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.hidden=true;b.setAttribute('aria-expanded','false')})})})();
 (function(){var f=document.querySelector('.tl');if(!f)return;var path=document.getElementById('tlpath'),sun=f.querySelector('.tl-sun'),glow=f.querySelector('.tl-glow');
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!path.getTotalLength||!('IntersectionObserver' in window))return;
